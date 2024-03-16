@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - image: kalyankumar13/employeewebapp:v1
-        name: emplyeeContainer
+        name: employeeContainer
         ports:
-        - containerPort: 80
+        - containerPort: 8080
