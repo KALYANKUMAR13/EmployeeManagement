@@ -7,7 +7,7 @@ FROM openjdk:17-jdk
 # Simply the artifact path
 
 
-WORKDIR /opt/app
+#WORKDIR /opt/app
 
 
 
