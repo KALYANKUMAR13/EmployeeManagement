@@ -27,6 +27,7 @@ pipeline {
         echo 'build Successfully!'
         sh 'pwd'
           sh 'ls -lrth'
+          sh 'chmod 777 target'
       }
     }
     stage('Build and Push Docker Image') {
