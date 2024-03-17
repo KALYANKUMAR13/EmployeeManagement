@@ -28,7 +28,8 @@ pipeline {
         sh 'pwd'
           sh 'ls -lrth'
           sh 'chmod 777 target'
-          sh 'cp /var/lib/jenkins/workspace/cicd-project/*.jar /var/lib/docker/temp/'
+          sh 'mkdir app \ chmod 777 app'
+          sh 'cp /var/lib/jenkins/workspace/cicd-project/*.jar app'
       }
     }
     stage('Build and Push Docker Image') {

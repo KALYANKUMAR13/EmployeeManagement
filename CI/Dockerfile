@@ -11,7 +11,7 @@ FROM openjdk:17-jdk
 
 
 
-COPY /var/lib/docker/temp/*.jar app.jar
+COPY /app/*.jar app.jar
 
 # This should not be changed
 ENTRYPOINT ["java","-jar","app.jar"]
