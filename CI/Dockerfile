@@ -3,11 +3,13 @@
 #FROM adoptopenjdk:11-jre-hotspot
 FROM openjdk:17-jdk
 
-# Copy the Maven artifact from the build stage
-COPY target/your_application.jar /usr/src/app/
+# Copy the Maven artifact from the build sta
+# Simply the artifact path
+ARG artifact=target/*.jar
 
-# Set the working directory
-WORKDIR /usr/src/app
+WORKDIR /opt/app
 
-# Expose any necessary ports
-EXPOSE 8080
+COPY ${artifact} app.jar
+
+# This should not be changed
+ENTRYPOINT ["java","-jar","app.jar"]
