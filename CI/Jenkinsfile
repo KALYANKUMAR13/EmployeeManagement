@@ -22,7 +22,7 @@ pipeline {
       steps {
         sh 'ls -lrth'
         // build the project and create a JAR file
-        sh 'mvn clean package -X'
+        sh 'cd CI && mvn clean package'
         echo 'build Successfully!'
       }
     }
