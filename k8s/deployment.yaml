@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: employeeManagement
+  name: employeemanagement
 spec:
   replicas: 2
   revisionHistoryLimit: 3
@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - image: kalyankumar13/employeewebapp:v1
-        name: employeeContainer
+        name: employee-container
         ports:
         - containerPort: 8080
