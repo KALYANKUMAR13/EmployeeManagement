@@ -26,6 +26,7 @@ pipeline {
         sh 'mvn clean package'
         echo 'build Successfully!'
         sh 'pwd'
+          sh 'ls -lrth'
       }
     }
     stage('Build and Push Docker Image') {
