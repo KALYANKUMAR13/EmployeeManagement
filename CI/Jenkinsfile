@@ -25,6 +25,7 @@ pipeline {
         // build the project and create a JAR file
         sh 'mvn clean package'
         echo 'build Successfully!'
+        sh 'pwd'
       }
     }
     stage('Build and Push Docker Image') {
