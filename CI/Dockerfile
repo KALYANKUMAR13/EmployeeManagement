@@ -3,13 +3,13 @@
 #FROM adoptopenjdk:11-jre-hotspot
 FROM openjdk:17-jdk
 # Set the working directory in the container
-WORKDIR /app
 
-# Copy the packaged JAR file from the build stage
-COPY --from=build /app/target/*.jar app.jar
+# Simply the artifact path
+ARG artifact=target/*.jar
 
-# Expose the port the application runs on
-EXPOSE 8080
+WORKDIR /opt/app
 
-# Specify the command to run the application
-CMD ["java", "-jar", "app.jar"]
+COPY ${artifact} app.jar
+
+# This should not be changed
+ENTRYPOINT ["java","-jar","app.jar"]
