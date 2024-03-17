@@ -28,7 +28,8 @@ pipeline {
         sh 'pwd'
           sh 'ls -lrth'
           sh 'chmod 777 target'
-          sh 'mkdir app \ chmod 777 app'
+          sh 'mkdir app'
+          sh 'chmod 777 app'
           sh 'cp /var/lib/jenkins/workspace/cicd-project/*.jar app'
       }
     }
