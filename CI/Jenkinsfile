@@ -26,6 +26,7 @@ pipeline {
         sh 'mvn clean package'
         echo 'build Successfully!'
         sh 'docker --version'
+        sh 'mv target/springboot-thymeleaf-crud-web-app-0.0.1-SNAPSHOT.jar target/app.jar'
         
       }
     }
