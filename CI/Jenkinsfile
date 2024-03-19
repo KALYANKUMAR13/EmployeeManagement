@@ -31,7 +31,7 @@ pipeline {
         
       }
     }
-    stage('Build and Push Docker Image') {
+   /* stage('Build and Push Docker Image') {
       environment {
         DOCKER_IMAGE = "kalyankumar13/webappempmanagement:${BUILD_NUMBER}"
         // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
@@ -46,7 +46,7 @@ pipeline {
             }
         }
       }
-    }
+    }*/
     stage('Update Deployment File') {
         environment {
             GIT_REPO_NAME = "EmployeeManagement"
