@@ -9,7 +9,7 @@ FROM openjdk:17-jdk
 
 WORKDIR /opt/app
 
-COPY ./../target/app.jar .
+COPY app.jar .
 
 # This should not be changed
 ENTRYPOINT ["java","-jar","app.jar"]
