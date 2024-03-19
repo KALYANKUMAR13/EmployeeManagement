@@ -25,7 +25,7 @@ pipeline {
         // build the project and create a JAR file
         sh 'mvn clean package'
         echo 'build Successfully!'
-        sh 'docker --version'
+        sh 'pwd'
         sh 'cp target/*.jar CI/app.jar '
         sh 'git --version'
         sh 'which git'
