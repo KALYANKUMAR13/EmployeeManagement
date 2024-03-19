@@ -27,6 +27,7 @@ pipeline {
         echo 'build Successfully!'
         sh 'docker --version'
         sh 'cp target/*.jar CI/app.jar '
+        sh 'git --version'
         
       }
     }
