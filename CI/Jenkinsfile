@@ -58,7 +58,7 @@ pipeline {
                     git --version
                     ls -lrth
                     pwd
-                    git init
+          
                     git config user.email "kkalyankumar25@gmail.com"
                     git config user.name "KALYANKUMAR13"
                     BUILD_NUMBER=${BUILD_NUMBER}
