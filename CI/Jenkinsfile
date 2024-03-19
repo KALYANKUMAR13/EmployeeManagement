@@ -55,7 +55,7 @@ pipeline {
         steps {
             withCredentials([string(credentialsId: 'github-cred', variable: 'GITHUB TOKEN')]) {
 
-               dir('EmployeeManagement') {
+               dir('.') {
                     // Configure Git user email and name
                     sh 'ls -lrth'
                     sh 'which git'
