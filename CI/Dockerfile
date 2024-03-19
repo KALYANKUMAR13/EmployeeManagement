@@ -5,7 +5,7 @@ FROM openjdk:17-jdk
 
 # Copy the Maven artifact from the build sta
 # Simply the artifact path
-ARG artifact=target/*.jar
+ARG artifact=./../target/*.jar
 
 WORKDIR /opt/app
 
