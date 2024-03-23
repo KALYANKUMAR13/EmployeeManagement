@@ -59,6 +59,7 @@ pipeline {
                     ls -lrth
                     pwd
                     ls -ld /usr
+                    git init
 
           
                     git config user.email "kkalyankumar25@gmail.com"
