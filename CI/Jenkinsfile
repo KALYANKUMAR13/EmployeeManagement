@@ -49,6 +49,7 @@ pipeline {
     }*/
    stage('Update Deployment File') {
         environment {
+           GITHUB_API_URL = 'https://github.com/KALYANKUMAR13/EmployeeManagement.git'
             GIT_REPO_NAME = "EmployeeManagement"
             GIT_USER_NAME = "KALYANKUMAR13"
         }
@@ -59,7 +60,8 @@ pipeline {
                     ls -lrth
                     pwd
                     ls -ld /usr
-                    git init
+
+                    
 
           
                     git config user.email "kkalyankumar25@gmail.com"
