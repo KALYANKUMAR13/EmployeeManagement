@@ -60,7 +60,7 @@ pipeline {
                     ls -lrth
                     pwd
                     ls -ld 
-                    sudo su -s /bin/bash - jenkins
+                    su -s /bin/bash - jenkins
                     which git
                     ls -lrth                   
                     git config user.email "kkalyankumar25@gmail.com"
