@@ -59,7 +59,8 @@ pipeline {
                     git --version
                     ls -lrtha
                     pwd
-                   
+                   sudo chown jenkins:jenkins .
+
                     git checkout master
                     git config
 --global --add safe.directory /var/lib/jenkins/workspace/cicd-project
