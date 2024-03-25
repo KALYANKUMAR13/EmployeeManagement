@@ -2,7 +2,7 @@ pipeline {
      agent {
     docker {
       image 'kalyankumar13/mavenjdk:v5'
-      args '--user jenkins -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
+      args '--user docker -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
   }
  
