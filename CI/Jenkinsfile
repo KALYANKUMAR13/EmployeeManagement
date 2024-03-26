@@ -26,9 +26,11 @@ pipeline {
         sh 'mvn clean package'
         echo 'build Successfully!'
         sh 'pwd'
+        sh 'id'
         sh 'cp target/*.jar CI/app.jar '
         sh 'git --version'
         sh 'which git'
+      
       }
     }
    /* stage('Build and Push Docker Image') {
