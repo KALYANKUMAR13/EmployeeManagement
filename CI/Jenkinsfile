@@ -59,7 +59,7 @@ pipeline {
         steps {
             withCredentials([string(credentialsId: 'github-cred', variable: 'GITHUB_TOKEN')]) {
                 sh '''
-                    chown -R jenkins:jenkins target
+                    //chown -R jenkins:jenkins target
                     git --version
                     ls -lrtha
                     pwd
