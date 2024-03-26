@@ -19,6 +19,8 @@ pipeline {
           sh 'id'
       }
     }
+
+    
     stage('Build and Test') {
        agent {
     docker {
@@ -47,6 +49,7 @@ pipeline {
             docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
                 dockerImage.push()
       }
+    }
     }
    /* stage('Build and Push Docker Image') {
       environment {
@@ -93,5 +96,5 @@ pipeline {
     }
    
   }
-
+  
 }
