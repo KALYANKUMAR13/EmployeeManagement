@@ -27,12 +27,13 @@ pipeline {
       image 'kalyankumar13/mavenjdk:v5'
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
-  }
-  environment {
+    environment {
         DOCKER_IMAGE = "kalyankumar13/webappempmanagement:${BUILD_NUMBER}"
         // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
         REGISTRY_CREDENTIALS = credentials('docker-cred')
       }
+  }
+  
       steps {
         sh 'ls -lrth'
         // build the project and create a JAR file
