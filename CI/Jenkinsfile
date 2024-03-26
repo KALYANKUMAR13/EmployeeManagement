@@ -34,7 +34,7 @@ pipeline {
           sh 'mvn clean package'
           echo 'build Successfully!'
           sh 'ls -l'
-          sh 'chown -R jenkins:jenkins target'
+          //sh 'chown -R jenkins:jenkins target'
           sh 'ls -l'
           sh 'cp target/*.jar CI/app.jar '
           sh 'git --version'
@@ -59,6 +59,7 @@ pipeline {
         steps {
             withCredentials([string(credentialsId: 'github-cred', variable: 'GITHUB_TOKEN')]) {
                 sh '''
+                    chown -R jenkins:jenkins target
                     git --version
                     ls -lrtha
                     pwd
