@@ -2,7 +2,7 @@ pipeline {
      agent {
     docker {
       image 'kalyankumar13/mavenjdk:v5'
-      args '--user docker -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
+      args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
   }
  
@@ -16,7 +16,7 @@ pipeline {
         checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-cred', url: 'https://github.com/KALYANKUMAR13/EmployeeManagement.git']])
       
           echo 'Succfully fetched the code'
-          sh 'pwd'
+          sh 'id'
       }
     }
     stage('Build and Test') {
