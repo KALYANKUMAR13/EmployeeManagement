@@ -1,0 +1,83 @@
+pipeline {
+     agent {
+    docker {
+      image 'kalyankumar13/mavenjdk:v5'
+      args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
+    }
+  }
+ 
+  stages {
+      
+    stage('Checkout') {
+      steps {
+        sh 'echo passed'
+        //git branch: 'main', url: 'https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero.git'
+        
+        checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-cred', url: 'https://github.com/KALYANKUMAR13/EmployeeManagement.git']])
+      
+          echo 'Succfully fetched the code'
+          sh 'id'
+      }
+    }
+    stage('Build and Test') {
+      steps {
+        sh 'ls -lrth'
+        // build the project and create a JAR file
+        sh 'mvn clean package'
+        echo 'build Successfully!'
+        sh 'ls -l'
+        sh 'chown -R jenkins:jenkins target'
+        sh 'ls -l'
+        sh 'cp target/*.jar CI/app.jar '
+        sh 'git --version'
+        sh 'which git'
+      
+      }
+    }
+   stage('Build and Push Docker Image') {
+      environment {
+        DOCKER_IMAGE = "kalyankumar13/webappempmanagement:${BUILD_NUMBER}"
+        // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
+        REGISTRY_CREDENTIALS = credentials('docker-cred')
+      }
+      steps {
+        script {
+            sh 'cd CI && docker build -t ${DOCKER_IMAGE} .'
+            def dockerImage = docker.image("${DOCKER_IMAGE}")
+            docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
+                dockerImage.push()
+            }
+        }
+      }
+    }
+   stage('Update Deployment File') {
+        environment {
+           GITHUB_API_URL = 'https://github.com/KALYANKUMAR13/EmployeeManagement.git'
+            GIT_REPO_NAME = "EmployeeManagement"
+            GIT_USER_NAME = "KALYANKUMAR13"
+        }
+        steps {
+            withCredentials([string(credentialsId: 'github-cred', variable: 'GITHUB_TOKEN')]) {
+                sh '''
+                    git --version
+                    ls -lrtha
+                    pwd
+                    git config
+--global --add safe.directory /var/lib/jenkins/workspace/cicd-project
+                    git checkout master
+                                     
+                    git config user.email "kkalyankumar25@gmail.com"
+                    git config user.name "KALYANKUMAR13"
+                    BUILD_NUMBER=${BUILD_NUMBER}
+                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" CD/deployment.yml
+                    git add CD/deployment.yml
+                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
+                '''
+            }
+        }
+    }
+   
+  }
+
+}
