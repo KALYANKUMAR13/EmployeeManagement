@@ -34,11 +34,8 @@ pipeline {
           sh 'mvn clean package'
           echo 'build Successfully!'
           sh 'ls -l'
-          sh 'chown -R jenkins:jenkins target'
-          sh 'ls -l'
           sh 'cp target/*.jar CI/app.jar '
-          sh 'git --version'
-          sh 'which git'
+          sh 'rm -rf target'
         //script {
           sh 'cd CI && docker build -t ${DOCKER_IMAGE} .'
           def dockerImage = docker.image("${DOCKER_IMAGE}")
